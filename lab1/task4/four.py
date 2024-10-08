@@ -5,13 +5,13 @@ def linear_search(v: int, arr: list):
         if i == v:
             cnt += 1
             idx.append(arr.index(i))
+            arr[arr.index(i)] = v+1
     if cnt == 1:
         return idx[0]
     elif cnt == 0:
         return -1
     else:
-        out.write(str(cnt))
-        return idx
+        return idx, cnt
 
 
 if __name__ == "__main__":
