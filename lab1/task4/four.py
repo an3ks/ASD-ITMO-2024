@@ -1,11 +1,10 @@
 def linear_search(v: int, arr: list):
     cnt = 0
     idx = []
-    for i in arr:
-        if i == v:
+    for i, char in enumerate(arr):
+        if char == v:
             cnt += 1
-            idx.append(arr.index(i))
-            arr[arr.index(i)] = v+1
+            idx.append(i)
     if cnt == 1:
         return idx[0]
     elif cnt == 0:
