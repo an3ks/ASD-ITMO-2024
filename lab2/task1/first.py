@@ -1,5 +1,6 @@
 import time
 import resource
+from lab2.utils import write_output, read_input
 
 
 # Function to print memory usage in MB
@@ -35,14 +36,9 @@ def merge_sort(arr: list):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    with open("input.txt", "r") as inp:
-        n = inp.readline()
-        arr = list(map(int, inp.readline().split()))
-        inp.close()
-    with open("output.txt", "w") as out:
-        merge_sort(arr)
-        out.write(' '.join(map(str, arr)))
-        out.close()
+    n, arr = read_input("input.txt")
+    merge_sort(arr)
+    write_output(arr, "output.txt")
     time_elapsed = (time.perf_counter() - time_start)
     mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
     print("Время:", time_elapsed)
