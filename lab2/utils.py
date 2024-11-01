@@ -19,3 +19,12 @@ def write_output(data, file_path="output.txt", index_log=None):
         out.write(' '.join(map(str, data)) + '\n')  # Запись основного массива или данных
 
 
+def read_input_for_binary_search(file_path="input.txt"):
+    """Чтение данных из файла для задачи бинарного поиска"""
+    n, arr_a = read_input(file_path)
+
+    with open(file_path, "r") as inp:
+        lines = inp.readlines()
+        k = int(lines[2].strip())
+        arr_b = list(map(int, lines[3].strip().split()))
+    return n, arr_a, k, arr_b
