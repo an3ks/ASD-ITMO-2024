@@ -1,21 +1,15 @@
 import time
 import resource
-from lab2.utils import write_output, read_input
+from lab2.utils import write_output, read_input, time_memory_tracking
 
 
-# Function to print memory usage in MB
-def print_memory_usage():
-    usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print(f"Memory usage: {usage / 1024:.2f} MB")  # Convert to MB
-
-
-def merge_sort(arr: list, index_log: list, start_idx=0):
+def merge_sort(arr: list):
     if len(arr) > 1:  # проверяем, не является ли длина массива единицей
         l = arr[:len(arr) // 2]  # делим текущий массив на две части
         r = arr[len(arr) // 2:]
         # рекурсивно вызываем функцию на каждую из частей, пока она внутри не дойдет до условия, что длина == 1 и не начнет выполнять код ниже
-        merge_sort(l, index_log, start_idx)
-        merge_sort(r, index_log, start_idx + len(l))
+        merge_sort(l)
+        merge_sort(r)
         templist = []  # временный список для слияния двух частей
         i = j = 0  # задаем индексы для работы с массивами
         while len(l) > i and len(
@@ -30,13 +24,6 @@ def merge_sort(arr: list, index_log: list, start_idx=0):
             templist.extend(r[j:])
         else:
             templist.extend(l[i:])
-
-        # out.write(f"{arr.index(templist[0]) + 1} {arr.index(templist[-1]) + 1} {templist[0]} {templist[-1]}\n")
-        # Записываем индексы начала и конца объединенного списка и значения
-        first_idx = start_idx
-        last_idx = start_idx + len(templist) - 1
-        index_log.append((first_idx + 1, last_idx + 1, templist[0], templist[-1]))  # +1 для человеческого индекса
-
         for i in range(len(templist)):  # обновляем исходный лист
             arr[i] = templist[i]
 
@@ -44,10 +31,13 @@ def merge_sort(arr: list, index_log: list, start_idx=0):
 if __name__ == "__main__":
     time_start = time.perf_counter()
     n, arr = read_input("input.txt")
-    index_log = []  # Хранение индексов и значений для каждой итерации слияния
-    merge_sort(arr, index_log)
-    write_output(arr, "output.txt", index_log)
-    time_elapsed = (time.perf_counter() - time_start)
-    mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
-    print("Время:", time_elapsed)
-    print("Память:%5.1f МБ" % (mmry))
+    merge_sort(arr)
+    write_output(arr, "output.txt")
+    time_memory_tracking(time_start)
+
+    # time_elapsed = (time.perf_counter() - time_start)
+    # mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
+    # print("Время:", time_elapsed)
+    # print("Память:%5.1f МБ" % (mmry))
+# usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+# print(f"Memory usage: {usage / 1024:.2f} MB")  # Convert to MB
