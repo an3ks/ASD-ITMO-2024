@@ -28,3 +28,10 @@ def read_input_for_binary_search(file_path="input.txt"):
         k = int(lines[2].strip())
         arr_b = list(map(int, lines[3].strip().split()))
     return n, arr_a, k, arr_b
+
+
+def time_memory_tracking(time_start: float):
+    time_elapsed = (time.perf_counter() - time_start)
+    mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
+    print("Время:", time_elapsed)
+    print("Память:%5.1f МБ" % (mmry))
