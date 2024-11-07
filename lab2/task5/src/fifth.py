@@ -1,12 +1,6 @@
 import time
 import resource
-from lab2.utils import write_output, read_input_for_binary_search, read_input
-
-
-# Function to print memory usage in MB
-def print_memory_usage():
-    usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print(f"Memory usage: {usage / 1024:.2f} MB")  # Convert to MB
+from lab2.utils import write_output, read_input_for_binary_search, read_input, time_memory_tracking
 
 
 def majority_element(A, left, right):
@@ -39,12 +33,9 @@ def majority_element(A, left, right):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    time_elapsed = (time.perf_counter() - time_start)
     n, arr = read_input("input.txt")
     res = majority_element(arr, 0, n - 1)
     if res != 0:
         res = 1
     write_output(str(res))
-    mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
-    print("Время:", time_elapsed)
-    print("Память:%5.1f МБ" % (mmry))
+    time_memory_tracking(time_start)

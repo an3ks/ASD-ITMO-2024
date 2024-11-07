@@ -1,12 +1,6 @@
 import time
 import resource
-from lab2.utils import write_output, read_input_for_binary_search
-
-
-# Function to print memory usage in MB
-def print_memory_usage():
-    usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print(f"Memory usage: {usage / 1024:.2f} MB")  # Convert to MB
+from lab2.utils import write_output, read_input_for_binary_search, time_memory_tracking
 
 
 def binary_search(sorted_arr: list, number: int):
@@ -30,7 +24,4 @@ if __name__ == "__main__":
         g = str(binary_search(sorted_arr, i))
         answer.append(g)
     write_output(answer, "output.txt")
-    time_elapsed = (time.perf_counter() - time_start)
-    mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
-    print("Время:", time_elapsed)
-    print("Память:%5.1f МБ" % (mmry))
+    time_memory_tracking(time_start)
