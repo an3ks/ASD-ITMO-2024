@@ -34,7 +34,7 @@
 ## Тестирование
 Для запуска тестов выполните:
 ```bash
-python -m unittest discover tests/
+python -m unittest discover test/
 ```
 
 ## Код для main.py
