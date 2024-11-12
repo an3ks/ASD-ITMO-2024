@@ -33,7 +33,7 @@ def majority_element(A, left, right):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     res = majority_element(arr, 0, n - 1)
     if res != 0:
         res = 1

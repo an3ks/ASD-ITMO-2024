@@ -18,10 +18,10 @@ def binary_search(sorted_arr: list, number: int):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n_sorted, sorted_arr, n, arr = read_input_for_binary_search("input.txt")
+    n_sorted, sorted_arr, n, arr = read_input_for_binary_search("../txtf/input.txt")
     answer = []
     for i in arr:
         g = str(binary_search(sorted_arr, i))
         answer.append(g)
-    write_output(answer, "output.txt")
+    write_output(answer, "../txtf/output.txt")
     time_memory_tracking(time_start)

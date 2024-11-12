@@ -33,8 +33,8 @@ def merge_sort(arr: list):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     number_of_inversions = merge_sort(arr)
-    with open("output.txt", "w") as out:
+    with open("../txtf/output.txt", "w") as out:
         out.write(str(number_of_inversions))
     time_memory_tracking(time_start)

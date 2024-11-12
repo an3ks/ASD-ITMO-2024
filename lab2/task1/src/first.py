@@ -30,14 +30,7 @@ def merge_sort(arr: list):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     merge_sort(arr)
-    write_output(arr, "output.txt")
+    write_output(arr, "../txtf/output.txt")
     time_memory_tracking(time_start)
-
-    # time_elapsed = (time.perf_counter() - time_start)
-    # mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
-    # print("Время:", time_elapsed)
-    # print("Память:%5.1f МБ" % (mmry))
-# usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-# print(f"Memory usage: {usage / 1024:.2f} MB")  # Convert to MB
