@@ -37,7 +37,7 @@
 python -m unittest discover test/
 ```
 
-## Код для main.py
+## Код для ex1.py
 ```python
 import time
 import resource

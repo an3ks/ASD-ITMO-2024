@@ -19,15 +19,13 @@ def write_output(data, file_path="output.txt", index_log=None):
         out.write(' '.join(map(str, data)) + '\n')  # Запись основного массива или данных
 
 
-def read_input_for_binary_search(file_path="input.txt"):
-    """Чтение данных из файла для задачи бинарного поиска"""
-    n, arr_a = read_input(file_path)
-
-    with open(file_path, "r") as inp:
-        lines = inp.readlines()
-        k = int(lines[2].strip())
-        arr_b = list(map(int, lines[3].strip().split()))
-    return n, arr_a, k, arr_b
+def read_input_for_lottery(filename):
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+        s, p = map(int, lines[0].split())
+        segments = [tuple(map(int, line.split())) for line in lines[1:s + 1]]
+        points = list(map(int, lines[s + 1].split()))
+        return [(s, p)] + segments + [points]
 
 
 def time_memory_tracking(time_start: float):
