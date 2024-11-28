@@ -40,7 +40,7 @@ def quick_sort_upgrade(arr: list):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     arr = quick_sort_upgrade(arr)
-    write_output(arr, "output.txt")
+    write_output(arr, "../txtf/output.txt")
     time_memory_tracking(time_start)
