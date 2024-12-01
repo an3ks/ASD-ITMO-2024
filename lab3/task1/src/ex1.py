@@ -9,29 +9,29 @@ def quick_sort(arr: list):
     """Обычный алгоритм быстрой сортировки"""
     if len(arr) <= 1:
         return arr  # base case
-    pivo = arr[0]
+    pivot = arr[0]
     gt = []
     mn = []
     for i in arr:
-        if i > pivo:
+        if i > pivot:
             gt.append(i)
         else:
             mn.append(i)
-    return quick_sort(mn) + [pivo] + quick_sort(gt)
+    return quick_sort(mn) + [pivot] + quick_sort(gt)
 
 
 def quick_sort_upgrade(arr: list):
     """Улучшенный алгоритм быстрой сортировки"""
     if len(arr) <= 1:
         return arr  # base case
-    pivo = arr[0]
+    pivot = arr[0]
     gt = []
     eq = []
     mn = []
     for i in arr:
-        if i > pivo:
+        if i > pivot:
             gt.append(i)
-        elif i < pivo:
+        elif i < pivot:
             mn.append(i)
         else:
             eq.append(i)
@@ -40,7 +40,7 @@ def quick_sort_upgrade(arr: list):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     arr = quick_sort_upgrade(arr)
-    write_output(arr, "output.txt")
+    write_output(arr, "../txtf/output.txt")
     time_memory_tracking(time_start)
