@@ -1,7 +1,7 @@
 import unittest
 import time
 from lab4.utils.utils import time_memory_tracking
-from ..src.ex7 import max_in_window
+from lab4.task7.src.ex7 import max_in_window
 
 
 class TestMaxInWindow(unittest.TestCase):

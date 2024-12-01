@@ -1,7 +1,7 @@
 import unittest
 import time
 from lab4.utils.utils import time_memory_tracking
-from ..src.ex6 import queue_min
+from lab4.task6.src.ex6 import queue_min
 
 
 class TestQueueMin(unittest.TestCase):

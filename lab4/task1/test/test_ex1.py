@@ -1,7 +1,7 @@
 import unittest
 import time
 from lab4.utils.utils import write_output, read_input_lines, time_memory_tracking
-from ..src.ex1 import stack
+from lab4.task1.src.ex1 import stack
 
 
 class TestStackFunction(unittest.TestCase):

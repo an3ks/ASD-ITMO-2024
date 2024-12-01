@@ -1,7 +1,7 @@
 import unittest
 import time
 from lab4.utils.utils import time_memory_tracking
-from ..src.ex3 import is_valid_parentheses
+from lab4.task3.src.ex3 import is_valid_parentheses
 
 
 class TestIsValidParentheses(unittest.TestCase):
