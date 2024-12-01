@@ -40,6 +40,9 @@
 1. **Клонирование репозитория:**
    ```bash
    git clone https://github.com/an3ks/ASD-ITMO-2024.git
-1. **Запуск программ:**
+2. **Запуск программ:**
    ```bash
    python src/exX.py
+3. **Запуск всех тестов:**
+   ```bash
+   python runall.py
