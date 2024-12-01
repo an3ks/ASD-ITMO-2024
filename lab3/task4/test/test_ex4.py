@@ -2,7 +2,7 @@ import unittest
 import random
 import time
 
-from ..src.ex4 import lottery
+from lab3.task4.src.ex4 import lottery
 from lab3.utils.utils import time_memory_tracking
 
 

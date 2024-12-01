@@ -1,6 +1,6 @@
 import unittest
 from random import randint
-from ..src.ex1 import quick_sort_upgrade
+from lab3.task1.src.ex1 import quick_sort_upgrade
 
 
 class TestQuickSort(unittest.TestCase):

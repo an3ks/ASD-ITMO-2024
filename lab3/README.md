@@ -78,9 +78,9 @@ task1/
    python src/ex1.py
    ```
 3. **Запуск тестов:**
-   Перейдите в папку `test/` и выполните:
+   Перейдите в папку lab 3 и выполните:
    ```bash
-   python -m unittest discover
+   python runall.py
    ```
 
 ## Вывод

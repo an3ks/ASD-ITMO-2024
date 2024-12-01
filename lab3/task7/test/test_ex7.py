@@ -1,6 +1,6 @@
 import unittest
 
-from ..src.ex7 import digital_sorting
+from lab3.task7.src.ex7 import digital_sorting
 class TestDigitalSortingFunction(unittest.TestCase):
 
     def test_should_digital_sorting1(self):
