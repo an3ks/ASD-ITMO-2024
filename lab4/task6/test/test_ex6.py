@@ -1,38 +1,106 @@
 import unittest
-from random import randint
-from ..src.ex1 import quick_sort_upgrade
+import time
+from lab4.utils.utils import time_memory_tracking
+from ..src.ex6 import queue_min
 
 
-class TestQuickSort(unittest.TestCase):
+class TestQueueMin(unittest.TestCase):
 
-    def test_should_quick_sort1(self):
-        """Большой массив одинаковых чисел, кроме одного"""
+    def test_should_process_simple_operations(self):
+        """Простой случай: добавление, удаление и поиск минимума"""
         # given
-        arr = [2] + [1] * 10 ** 5
+        n = 6
+        commands = [
+            ["+", "3"],
+            ["+", "1"],
+            ["?", ""],
+            ["-", ""],
+            ["?", ""],
+            ["+", "2"]
+        ]
+        expected_result = [1, 1]
+
+        # when
+        result = queue_min(n, commands)
+
         # then
-        self.assertEqual(quick_sort_upgrade(arr), sorted(arr))
+        self.assertEqual(result, expected_result)
 
-    def test_should_quick_sort2(self):
-        """Большой массив рандомных чисел"""
+
+    def test_should_process_large_data(self):
+        """Случай с большими данными для проверки производительности"""
         # given
-        arr = [randint(0, 10 ** 9) for i in range(10 ** 5)]
+        n = 10000
+        commands = [["+", str(i)] for i in range(10000)] + [["?"]]  # Добавляем числа от 0 до 9999 и ищем минимум
+        expected_result = [0]
+        start_time = time.perf_counter()
+
+        # when
+        result = queue_min(n, commands)
+
         # then
-        self.assertEqual(quick_sort_upgrade(arr), sorted(arr))
+        self.assertEqual(result, expected_result)
+        time_memory_tracking(start_time)
 
-    def test_should_quick_sort3(self):
-        """Массив из одного элемента"""
+    def test_should_process_removals(self):
+        """Случай с последовательными удалениями и запросами минимума"""
         # given
-        arr = [1]
-        self.assertEqual(quick_sort_upgrade(arr), [1])
+        n = 7
+        commands = [
+            ["+", "5"],
+            ["+", "3"],
+            ["+", "8"],
+            ["-", ""],
+            ["?", ""],
+            ["-", ""],
+            ["?", ""]
+        ]
+        expected_result = [3, 8]
 
+        # when
+        result = queue_min(n, commands)
 
-    def test_should_quick_sort4(self):
-        """Пустой массив"""
-        # given
-        arr = []
         # then
-        self.assertEqual(quick_sort_upgrade(arr), [])
+        self.assertEqual(result, expected_result)
+
+    def test_should_handle_negative_numbers(self):
+        """Случай с отрицательными числами"""
+        # given
+        n = 5
+        commands = [
+            ["+", "-1"],
+            ["+", "-5"],
+            ["?", ""],
+            ["-", ""],
+            ["?", ""]
+        ]
+        expected_result = [-5, -5]
+
+        # when
+        result = queue_min(n, commands)
+
+        # then
+        self.assertEqual(result, expected_result)
+
+    def test_should_process_only_minimum_requests(self):
+        """Случай, когда есть только запросы на минимум"""
+        # given
+        n = 5
+        commands = [
+            ["+", "10"],
+            ["+", "15"],
+            ["?", ""],
+            ["?", ""],
+            ["?", ""]
+        ]
+        expected_result = [10, 10, 10]
+
+        # when
+        result = queue_min(n, commands)
+
+        # then
+        self.assertEqual(result, expected_result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

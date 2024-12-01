@@ -1,16 +1,31 @@
-# Задание №1 по варианту: `Улучшение Quick sort`  
+
+# Задание: Реализация стека с командами добавления и удаления элементов  
 Студент ИТМО, Авдиенко Данила, itmoId 464919
 
 ## Вариант 1
 
-## Задание
-Реализовать улучшенную версию алгоритма быстрой сортировки (Quick sort) с оптимизацией для улучшения производительности при сортировке больших массивов данных. Включить гибридный подход, использующий вставку для небольших подмассивов и случайный выбор опорного элемента.
+## Задание 1
+Реализовать стек с командами добавления элемента в стек (`+`) и удаления элемента из стека (`-`). При удалении элемента из стека результат необходимо сохранить.
 
 ## Input / Output
 
-| Input                      | Output                                |
-|----------------------------|---------------------------------------|
-| 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 | 2, 3, 5, 6, 7, 9, 10, 11, 12, 14 |
+### Формат входных данных:
+- Первая строка содержит число `n` — количество операций.
+- Последующие строки содержат команды:
+  - `+ X` — добавить элемент `X` в стек.
+  - `-` — удалить верхний элемент из стека.
+
+### Формат выходных данных:
+- Список элементов, удаленных из стека в порядке их удаления.
+
+| Input                               | Output             |
+|-------------------------------------|--------------------|
+| 5                                   | ['2', '1']         |
+| + 1                                 |                    |
+| + 2                                 |                    |
+| -                                   |                    |
+| -                                   |                    |
+| + 3                                 |                    |
 
 ## Ограничения по времени и памяти
 
@@ -24,7 +39,7 @@
    ```
 2. Перейдите в папку с проектом:
    ```bash
-   cd lab3/task1/src
+   cd lab4/task1/src
    ```
 3. Запустите программу:
    ```bash
@@ -40,46 +55,28 @@ python -m unittest discover test/
 ## Код для ex1.py
 ```python
 import time
-import resource
-from lab2.utils import write_output, read_input, time_memory_tracking
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+from lab4.utils.utils import write_output, read_input_lines, time_memory_tracking
 
-def quick_sort(arr: list):
-    """Обычный алгоритм быстрой сортировки"""
-    if len(arr) <= 1:
-        return arr  # base case
-    pivo = arr[0]
-    gt = []
-    mn = []
+def stack(n, arr):
+    stck = []
+    callStck = []
     for i in arr:
-        if i > pivo:
-            gt.append(i)
+        if i[0] == "+":
+            stck.append(i[1])
         else:
-            mn.append(i)
-    return quick_sort(mn) + [pivo] + quick_sort(gt)
-
-
-def quick_sort_upgrade(arr: list):
-    """Улучшенный алгоритм быстрой сортировки"""
-    if len(arr) <= 1:
-        return arr  # base case
-    pivo = arr[0]
-    gt = []
-    eq = []
-    mn = []
-    for i in arr:
-        if i > pivo:
-            gt.append(i)
-        elif i < pivo:
-            mn.append(i)
-        else:
-            eq.append(i)
-    return quick_sort_upgrade(mn) + eq + quick_sort_upgrade(gt)
-
+            callStck.append(stck.pop(-1))
+    return callStck
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
-    arr = quick_sort_upgrade(arr)
-    write_output(arr, "output.txt")
+    n, arr = read_input_lines("../txtf/input.txt")
+    print(n)
+    print(arr)
+    arr1 = stack(n, arr)
+    write_output(arr1, "../txtf/output.txt")
     time_memory_tracking(time_start)
+```

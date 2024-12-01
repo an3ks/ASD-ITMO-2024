@@ -1,38 +1,85 @@
 import unittest
-from random import randint
-from ..src.ex1 import quick_sort_upgrade
+import time
+from lab4.utils.utils import time_memory_tracking
+from ..src.ex3 import is_valid_parentheses
 
 
-class TestQuickSort(unittest.TestCase):
+class TestIsValidParentheses(unittest.TestCase):
 
-    def test_should_quick_sort1(self):
-        """Большой массив одинаковых чисел, кроме одного"""
+    def test_should_validate1(self):
+        """Базовый случай: корректная скобочная последовательность"""
         # given
-        arr = [2] + [1] * 10 ** 5
+        data = ["(())"]
+        expected_result = ["YES"]
+
+        # when
+        result = [is_valid_parentheses(seq) for seq in data]
+
         # then
-        self.assertEqual(quick_sort_upgrade(arr), sorted(arr))
+        self.assertEqual(result, expected_result)
 
-    def test_should_quick_sort2(self):
-        """Большой массив рандомных чисел"""
+    def test_should_validate2(self):
+        """Смешанная последовательность с правильным порядком"""
         # given
-        arr = [randint(0, 10 ** 9) for i in range(10 ** 5)]
+        data = ["([])"]
+        expected_result = ["YES"]
+
+        # when
+        result = [is_valid_parentheses(seq) for seq in data]
+
         # then
-        self.assertEqual(quick_sort_upgrade(arr), sorted(arr))
+        self.assertEqual(result, expected_result)
 
-    def test_should_quick_sort3(self):
-        """Массив из одного элемента"""
+    def test_should_validate3(self):
+        """Некорректная последовательность"""
         # given
-        arr = [1]
-        self.assertEqual(quick_sort_upgrade(arr), [1])
+        data = ["([)]"]
+        expected_result = ["NO"]
 
+        # when
+        result = [is_valid_parentheses(seq) for seq in data]
 
-    def test_should_quick_sort4(self):
-        """Пустой массив"""
-        # given
-        arr = []
         # then
-        self.assertEqual(quick_sort_upgrade(arr), [])
+        self.assertEqual(result, expected_result)
+
+    def test_should_validate4(self):
+        """Случай с пустой последовательностью"""
+        # given
+        data = [""]
+        expected_result = ["YES"]
+
+        # when
+        result = [is_valid_parentheses(seq) for seq in data]
+
+        # then
+        self.assertEqual(result, expected_result)
+
+    def test_should_validate5(self):
+        """Случай с большими данными для проверки производительности"""
+        # given
+        data = ["(" * 50000 + ")" * 50000]
+        expected_result = ["YES"]
+        start_time = time.perf_counter()
+
+        # when
+        result = [is_valid_parentheses(seq) for seq in data]
+
+        # then
+        self.assertEqual(result, expected_result)
+        time_memory_tracking(start_time)
+
+    def test_should_validate6(self):
+        """Случай с незакрытыми скобками"""
+        # given
+        data = ["(()"]
+        expected_result = ["NO"]
+
+        # when
+        result = [is_valid_parentheses(seq) for seq in data]
+
+        # then
+        self.assertEqual(result, expected_result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
