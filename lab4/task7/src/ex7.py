@@ -23,7 +23,6 @@ def max_in_window(n, arr, m):
 if __name__ == "__main__":
     time_start = time.perf_counter()
     n, arr, m = read_input("../txtf/input.txt")
-    print(n, arr, m)
     arr = max_in_window(n, arr, m)
     write_output(arr, "../txtf/output.txt")
     time_memory_tracking(time_start)
