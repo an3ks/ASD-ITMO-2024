@@ -20,8 +20,6 @@ def stack(n, arr):
 if __name__ == "__main__":
     time_start = time.perf_counter()
     n, arr = read_input_lines("../txtf/input.txt")
-    print(n)
-    print(arr)
     arr1 = stack(n, arr)
     write_output(arr1, "../txtf/output.txt")
     time_memory_tracking(time_start)
