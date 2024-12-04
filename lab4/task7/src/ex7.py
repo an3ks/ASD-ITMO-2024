@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-from lab4.utils.utils import write_output, read_input, time_memory_tracking
+from lab4.utils.utils import write_output, read_input, time_memory_tracking, printResult
 
 
 def max_in_window(n, arr, m):
@@ -25,4 +25,6 @@ if __name__ == "__main__":
     n, arr, m = read_input("../txtf/input.txt")
     arr = max_in_window(n, arr, m)
     write_output(arr, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(arr, file_name)
     time_memory_tracking(time_start)

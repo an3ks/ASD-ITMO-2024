@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-from lab3.utils.utils import write_output, read_input_for_lottery, time_memory_tracking
+from lab3.utils.utils import write_output, read_input_for_lottery, time_memory_tracking, printResult
 
 
 def lottery(data):
@@ -39,5 +39,8 @@ def lottery(data):
 if __name__ == "__main__":
     time_start = time.perf_counter()
     data = read_input_for_lottery("../txtf/input.txt")
-    write_output(lottery(data), "../txtf/output.txt")
+    answer = lottery(data)
+    write_output(answer, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(answer, file_name)
     time_memory_tracking(time_start)

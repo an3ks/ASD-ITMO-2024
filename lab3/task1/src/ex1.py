@@ -2,7 +2,7 @@ import time
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-from lab3.utils.utils import write_output, read_input, time_memory_tracking
+from lab3.utils.utils import write_output, read_input, time_memory_tracking, printResult
 
 
 def quick_sort(arr: list):
@@ -43,4 +43,6 @@ if __name__ == "__main__":
     n, arr = read_input("../txtf/input.txt")
     arr = quick_sort_upgrade(arr)
     write_output(arr, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(arr, file_name)
     time_memory_tracking(time_start)

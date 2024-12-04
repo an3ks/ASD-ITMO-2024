@@ -4,7 +4,7 @@ import os
 import resource
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-from lab3.utils.utils import write_output, read_input, time_memory_tracking
+from lab3.utils.utils import write_output, read_input, time_memory_tracking, printResult
 
 
 def digital_sorting(n: int, m: int, k: int, matrix: list):
@@ -31,5 +31,7 @@ if __name__ == "__main__":
         n, m, k = map(int, inp.readline().split())
         matrix = [inp.readline().strip() for i in range(m)]
     result_indices = digital_sorting(n, m, k, matrix)
-    time_memory_tracking(time_start)
     write_output(result_indices, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(result_indices, file_name)
+    time_memory_tracking(time_start)

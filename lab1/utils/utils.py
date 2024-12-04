@@ -1,6 +1,5 @@
 import time
 import resource
-import os
 
 
 def read_input(file_path="input.txt"):
@@ -9,6 +8,17 @@ def read_input(file_path="input.txt"):
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
     return n, arr
+
+
+def read_input_lines(file_path="../txtf/input.txt"):
+    "Чтение построчно"
+    with open(file_path, "r") as inp:
+        n = int(inp.readline())
+        list_of_lines = []
+        for line in inp:
+            if line != "":
+                list_of_lines.append(line.split())
+        return n, list_of_lines
 
 
 def write_output(data, file_path="output.txt", index_log=None):

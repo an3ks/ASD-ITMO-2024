@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-from lab4.utils.utils import write_output, read_input_lines, time_memory_tracking
+from lab4.utils.utils import write_output, read_input_lines, time_memory_tracking, printResult
 
 
 def is_valid_parentheses(sequence):
@@ -24,4 +24,6 @@ if __name__ == "__main__":
     n, arr = read_input_lines("../txtf/input.txt")
     results = [is_valid_parentheses(''.join(line)) for line in arr]
     write_output(results, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(results, file_name)
     time_memory_tracking(time_start)
