@@ -1,5 +1,5 @@
 import unittest
-from lab2.task3.src.third import merge_sort
+from lab2.task3.src.ex3 import merge_sort
 
 
 class TestInversionCount(unittest.TestCase):

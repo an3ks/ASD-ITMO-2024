@@ -1,6 +1,7 @@
 import time
 import resource
-from lab2.utils import write_output, read_input, time_memory_tracking
+import os
+from lab2.utils.utils import *
 
 
 def merge_sort(arr: list):
@@ -33,8 +34,9 @@ def merge_sort(arr: list):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
-    number_of_inversions = merge_sort(arr)
-    with open("../txtf/output.txt", "w") as out:
-        out.write(str(number_of_inversions))
+    n, arr = read_input("../txtf/input.txt")
+    number_of_inversions = str(merge_sort(arr))
+    write_output(number_of_inversions, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(number_of_inversions, file_name)
     time_memory_tracking(time_start)

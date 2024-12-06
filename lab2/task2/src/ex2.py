@@ -1,6 +1,7 @@
 import time
 import resource
-from lab2.utils import write_output, read_input, time_memory_tracking
+import os
+from lab2.utils.utils import *
 
 
 def merge_sort(arr: list, index_log: list, start_idx=0):
@@ -37,8 +38,10 @@ def merge_sort(arr: list, index_log: list, start_idx=0):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     index_log = []  # Хранение индексов и значений для каждой итерации слияния
     merge_sort(arr, index_log)
-    write_output(arr, "output.txt", index_log)
+    write_output(arr, "../txtf/output.txt", index_log)
+    file_name = os.path.basename(__file__)
+    printResult(arr, file_name)
     time_memory_tracking(time_start)

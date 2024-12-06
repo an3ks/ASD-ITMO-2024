@@ -1,6 +1,7 @@
 import time
 import resource
-from lab2.utils import write_output, read_input_for_binary_search, time_memory_tracking
+import os
+from lab2.utils.utils import *
 
 
 def binary_search(sorted_arr: list, number: int):
@@ -18,10 +19,12 @@ def binary_search(sorted_arr: list, number: int):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n_sorted, sorted_arr, n, arr = read_input_for_binary_search("input.txt")
+    n_sorted, sorted_arr, n, arr = read_input_for_binary_search("../txtf/input.txt")
     answer = []
     for i in arr:
         g = str(binary_search(sorted_arr, i))
         answer.append(g)
-    write_output(answer, "output.txt")
+    write_output(answer, "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(answer, file_name)
     time_memory_tracking(time_start)

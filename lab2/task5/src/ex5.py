@@ -1,6 +1,7 @@
 import time
 import resource
-from lab2.utils import write_output, read_input_for_binary_search, read_input, time_memory_tracking
+import os
+from lab2.utils.utils import *
 
 
 def majority_element(A, left, right):
@@ -33,9 +34,11 @@ def majority_element(A, left, right):
 
 if __name__ == "__main__":
     time_start = time.perf_counter()
-    n, arr = read_input("input.txt")
+    n, arr = read_input("../txtf/input.txt")
     res = majority_element(arr, 0, n - 1)
     if res != 0:
         res = 1
-    write_output(str(res))
+    write_output(str(res), "../txtf/output.txt")
+    file_name = os.path.basename(__file__)
+    printResult(res, file_name)
     time_memory_tracking(time_start)

@@ -1,5 +1,5 @@
 import unittest
-from lab2.task5.src.fifth import majority_element
+from lab2.task5.src.ex5 import majority_element
 
 
 class TestMajorityElement(unittest.TestCase):
