@@ -11,6 +11,7 @@ class TestLotteryFunction(unittest.TestCase):
     def test_should_lottery1(self):
         """базовый"""
         # given
+        start_time = time.perf_counter()
         data = [
             (3, 3),
             (1, 5),
@@ -25,10 +26,12 @@ class TestLotteryFunction(unittest.TestCase):
 
         # then
         self.assertEqual(result, expected_result)
+        time_memory_tracking(start_time)
 
     def test_should_lottery2(self):
         """отрезки не пересекаются с точками"""
         # given
+        start_time = time.perf_counter()
         data = [
             (2, 3),
             (1, 2),
@@ -42,10 +45,12 @@ class TestLotteryFunction(unittest.TestCase):
 
         # then
         self.assertEqual(result, expected_result)
+        time_memory_tracking(start_time)
 
     def test_should_lottery3(self):
         """все точки внутри одного отрезка"""
         # given
+        start_time = time.perf_counter()
         data = [
             (1, 3),
             (0, 10),
@@ -58,10 +63,12 @@ class TestLotteryFunction(unittest.TestCase):
 
         # then
         self.assertEqual(result, expected_result)
+        time_memory_tracking(start_time)
 
     def test_should_lottery4(self):
         """точки находятся на границах отрезков"""
         # given
+        start_time = time.perf_counter()
         data = [
             (2, 3),
             (1, 3),
@@ -75,6 +82,7 @@ class TestLotteryFunction(unittest.TestCase):
 
         # then
         self.assertEqual(result, expected_result)
+        time_memory_tracking(start_time)
 
     def test_should_lottery5(self):
         """случай с большими входными данными для проверки производительности"""

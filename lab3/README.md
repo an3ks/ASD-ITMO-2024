@@ -80,7 +80,7 @@ task1/
 3. **Запуск тестов:**
    Перейдите в папку lab 3 и выполните:
    ```bash
-   python runall.py
+   python run_all.py
    ```
 
 ## Вывод
