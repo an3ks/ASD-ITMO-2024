@@ -30,7 +30,7 @@ def discover_and_run_tests():
 
         # Выводим только ваш результат
         if result.wasSuccessful():
-            print(f"{task_dir}: Все тесты прошли успешно. \n \n")
+            print(f"=========={task_dir}: Все тесты прошли успешно.========== \n")
         else:
             print(f"{task_dir}: Обнаружены ошибки в тестах. Проверьте выше.")
 
