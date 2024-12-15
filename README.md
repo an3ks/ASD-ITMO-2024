@@ -7,6 +7,8 @@
 - [x] [Лабораторная работа №3](https://github.com/an3ks/ASD-ITMO-2024/tree/main/lab3)
 - [x] [Лабораторная работа №4](https://github.com/an3ks/ASD-ITMO-2024/tree/main/lab4)
 - [ ] [Лабораторная работа №5](https://github.com/an3ks/ASD-ITMO-2024/tree/main/lab5)
+- [ ] [Лабораторная работа №6](https://github.com/an3ks/ASD-ITMO-2024/tree/main/lab6)
+- [ ] [Лабораторная работа №7](https://github.com/an3ks/ASD-ITMO-2024/tree/main/lab7) 
 
 ---
 
@@ -40,9 +42,9 @@
 1. **Клонирование репозитория:**
    ```bash
    git clone https://github.com/an3ks/ASD-ITMO-2024.git
-2. **Запуск программ:**
+2. **Запуск всех лаб:**
    ```bash
-   python src/exX.py
+   runAllLabs.py
 3. **Запуск всех тестов:**
    ```bash
-   python runall.py
+   runAllTests.py
