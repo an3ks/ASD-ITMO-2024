@@ -1,133 +1,117 @@
 import unittest
 import time
-from lab4.utils.utils import time_memory_tracking1
-from lab4.task7.src.ex7 import max_in_window
+from lab2.task4.src.ex4 import binary_search
+from lab2.utils.utils import time_memory_tracking1
 
 
-class TestMaxInWindow(unittest.TestCase):
+class TestBinarySearch(unittest.TestCase):
     TIME_LIMIT_SECONDS = 2
     MEMORY_LIMIT_MB = 256
-
-    def test_should_return_correct_result1(self):
-        """Базовый случай с окном размера 3"""
+    def test_should_binary_search1(self):
+        """Простой тест"""
         # given
-        n = 8
-        arr = [1, 3, -1, -3, 5, 3, 6, 7]
-        m = 3
-        expected_result = [3, 3, 5, 5, 6, 7]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [1, 3, 5, 7, 9]
+        # when
+        index = binary_search(arr, 5)
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(index, 2)  # Элемент 5 находится на индексе 2
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_correct_result2(self):
-        """Случай, где длина окна равна длине массива"""
+    def test_should_binary_search2(self):
+        """Начальный элемент верный"""
         # given
-        n = 5
-        arr = [4, 2, 12, 3, 8]
-        m = 5
-        expected_result = [12]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [1, 3, 5, 7, 9]
+        # when
+        index = binary_search(arr, 1)
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(index, 0)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_correct_result3(self):
-        """Случай с одним элементом в окне"""
+    def test_should_binary_search3(self):
+        """Крайний элемент верный"""
         # given
-        n = 5
-        arr = [4, 2, 12, 3, 8]
-        m = 1
-        expected_result = [4, 2, 12, 3, 8]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [1, 3, 5, 7, 9]
+        # when
+        index = binary_search(arr, 9)
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(index, 4)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_correct_result4(self):
-        """Случай с повторяющимися элементами"""
+    def test_should_binary_search4(self):
+        """Массив с 1 элементом"""
         # given
-        n = 6
-        arr = [5, 5, 5, 5, 5, 5]
-        m = 3
-        expected_result = [5, 5, 5, 5]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [10]
+        # when
+        index = binary_search(arr, 10)
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(index, 0)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_handle_large_data(self):
-        """Случай с большими данными для проверки производительности"""
+    def test_should_binary_search5(self):
+        """Массив с 1 элементом и без искомого элемента"""
         # given
-        n = 10000
-        arr = list(range(10000))  # [0, 1, 2, ..., 9999]
-        m = 100
-        expected_result = list(range(99, 10000))
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [10]
+        # when
+        index = binary_search(arr, 5)
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(index, -1)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_empty_for_small_array(self):
-        """Случай, когда размер окна больше размера массива"""
+    def test_should_binary_search6(self):
+        """Большой массив"""
         # given
-        n = 3
-        arr = [1, 2, 3]
-        m = 5
-        expected_result = []
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = list(range(1, 1000001))  # Массив от 1 до 1,000,000
+        # when
+        index = binary_search(arr, 500000)
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(index, 499999)  # Элемент 500000 должен быть на индексе 499999
+        self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
+                             f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
+        self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
+                             f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
+
+    def test_should_binary_search7(self):
+        """Тест с поиском отсутствующего элемента"""
+        # given
+        start_time = time.perf_counter()
+        arr = list(range(1, 1000001))
+        # when
+        index = binary_search(arr, 1000001)
+        elapsed_time, memory_usage = time_memory_tracking1(start_time)
+        # then
+        self.assertEqual(index, -1)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

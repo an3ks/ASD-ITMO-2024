@@ -1,10 +1,12 @@
 import unittest
 import time
 from lab1.taks6.src.ex6 import bubble_sort
-from lab1.utils.utils import time_memory_tracking
+from lab1.utils.utils import time_memory_tracking1
 
 
 class TestFirst(unittest.TestCase):
+    TIME_LIMIT_SECONDS = 2
+    MEMORY_LIMIT_MB = 256
 
     def test_should_bubble_sort0(self):
         # given
@@ -13,9 +15,13 @@ class TestFirst(unittest.TestCase):
         list_length = len(arr)
         # when
         result = bubble_sort(list_length, arr)
+        elapsed_time, memory_usage = time_memory_tracking1(start_time)
         # then
         self.assertEqual(result, [-6, 0, 1, 5, 234, 325])
-        time_memory_tracking(start_time)
+        self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
+                             f"Время выполнения {elapsed_time:.2f} с превышает лимит {self.TIME_LIMIT_SECONDS} с")
+        self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
+                             f"Память {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
     def test_should_bubble_sort1(self):
         # given
@@ -24,9 +30,13 @@ class TestFirst(unittest.TestCase):
         list_length = len(arr)
         # when
         result = bubble_sort(list_length, arr)
+        elapsed_time, memory_usage = time_memory_tracking1(start_time)
         # then
         self.assertEqual(result, [-5, -3, -1, 3, 5, 5])
-        time_memory_tracking(start_time)
+        self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
+                             f"Время выполнения {elapsed_time:.2f} с превышает лимит {self.TIME_LIMIT_SECONDS} с")
+        self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
+                             f"Память {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
 
 if __name__ == "__main__":

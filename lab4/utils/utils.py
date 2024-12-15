@@ -35,8 +35,6 @@ def write_output(data, file_path="output.txt", index_log=None):
         out.write(' '.join(map(str, data)) + '\n')  # Запись основного массива или данных
 
 
-
-
 def read_input_for_lottery(filename):
     with open(filename, 'r') as f:
         lines = f.readlines()
@@ -51,6 +49,12 @@ def time_memory_tracking(time_start: float):
     mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
     print("Время:", time_elapsed)
     print(f"Память:%5.1f МБ\n" % (mmry))
+
+
+def time_memory_tracking1(time_start: float):
+    time_elapsed = (time.perf_counter() - time_start)
+    mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
+    return time_elapsed, mmry
 
 
 def printResult(answer, filename):

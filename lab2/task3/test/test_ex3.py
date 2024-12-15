@@ -1,133 +1,107 @@
 import unittest
 import time
-from lab4.utils.utils import time_memory_tracking1
-from lab4.task7.src.ex7 import max_in_window
+from lab2.task3.src.ex3 import merge_sort
+from lab2.utils.utils import time_memory_tracking1
 
 
-class TestMaxInWindow(unittest.TestCase):
+class TestInversionCount(unittest.TestCase):
     TIME_LIMIT_SECONDS = 2
     MEMORY_LIMIT_MB = 256
 
-    def test_should_return_correct_result1(self):
-        """Базовый случай с окном размера 3"""
+    def test_should_merge_sort1(self):
+        """Тест с обычным массивом"""
         # given
-        n = 8
-        arr = [1, 3, -1, -3, 5, 3, 6, 7]
-        m = 3
-        expected_result = [3, 3, 5, 5, 6, 7]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [3, 1, 4, 1, 5]
+        expected_inversions = 3
+        # when
+        inversions = merge_sort(arr.copy())
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(inversions, expected_inversions)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_correct_result2(self):
-        """Случай, где длина окна равна длине массива"""
+    def test_should_merge_sort2(self):
+        """Отсортированный массив"""
         # given
-        n = 5
-        arr = [4, 2, 12, 3, 8]
-        m = 5
-        expected_result = [12]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [1, 2, 3, 4, 5]
+        # when
+        inversions = merge_sort(arr.copy())
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(inversions, 0)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_correct_result3(self):
-        """Случай с одним элементом в окне"""
+    def test_should_merge_sort3(self):
+        """Массив в обратном порядке"""
         # given
-        n = 5
-        arr = [4, 2, 12, 3, 8]
-        m = 1
-        expected_result = [4, 2, 12, 3, 8]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [5, 4, 3, 2, 1]
+        expected_inversions = 10
+        # when
+        inversions = merge_sort(arr.copy())
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(inversions, expected_inversions)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_correct_result4(self):
-        """Случай с повторяющимися элементами"""
+    def test_should_merge_sort4(self):
+        """Случайный большой массив"""
         # given
-        n = 6
-        arr = [5, 5, 5, 5, 5, 5]
-        m = 3
-        expected_result = [5, 5, 5, 5]
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        import random
+        arr = random.sample(range(-10 ** 5, 10 ** 5), 10 ** 3)
+        expected_inversions = sum(1 for i in range(len(arr)) for j in range(i + 1, len(arr)) if arr[i] > arr[j])
+        # when
+        inversions = merge_sort(arr.copy())
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(inversions, expected_inversions)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_handle_large_data(self):
-        """Случай с большими данными для проверки производительности"""
+    def test_should_merge_sort5(self):
+        """Массив, длинной 1"""
         # given
-        n = 10000
-        arr = list(range(10000))  # [0, 1, 2, ..., 9999]
-        m = 100
-        expected_result = list(range(99, 10000))
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = [42]
+        # when
+        inversions = merge_sort(arr.copy())
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(inversions, 0)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
-    def test_should_return_empty_for_small_array(self):
-        """Случай, когда размер окна больше размера массива"""
+    def test_should_merge_sort6(self):
+        """Пустой массив"""
         # given
-        n = 3
-        arr = [1, 2, 3]
-        m = 5
-        expected_result = []
-
-        # when
         start_time = time.perf_counter()
-        result = max_in_window(n, arr, m)
+        arr = []
+        # when
+        inversions = merge_sort(arr.copy())
         elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
         # then
-        self.assertEqual(result, expected_result)
+        self.assertEqual(inversions, 0)
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
                              f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

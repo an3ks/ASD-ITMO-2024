@@ -40,6 +40,12 @@ def time_memory_tracking(time_start: float):
     print(f"Память:%5.1f МБ\n" % (mmry))
 
 
+def time_memory_tracking1(time_start: float):
+    time_elapsed = (time.perf_counter() - time_start)
+    mmry = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
+    return time_elapsed, mmry
+
+
 def printResult(answer, filename):
     print(f"=======Результат для {filename}=======")
     print(answer)
