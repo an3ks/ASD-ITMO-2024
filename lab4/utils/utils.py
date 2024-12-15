@@ -8,6 +8,8 @@ def read_input(file_path="input.txt"):
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
         m = int(inp.readline())
+    print("==========Входные данные========== ")
+    print(f"Входные данные n = {n}; arr = {arr}, m = {m}")
     return n, arr, m
 
 
@@ -19,6 +21,8 @@ def read_input_lines(file_path="../txtf/input.txt"):
         for line in inp:
             if line != "":
                 list_of_lines.append(line.split())
+        print("==========Входные данные========== ")
+        print(f"n = {n}; arr = {list_of_lines}")
         return n, list_of_lines
 
 
@@ -29,6 +33,8 @@ def write_output(data, file_path="output.txt", index_log=None):
             for el in index_log:
                 out.write(f"{el[0]} {el[1]} {el[2]} {el[3]}\n")  # Запись индексов и значений
         out.write(' '.join(map(str, data)) + '\n')  # Запись основного массива или данных
+
+
 
 
 def read_input_for_lottery(filename):

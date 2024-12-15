@@ -7,6 +7,8 @@ def read_input(file_path="input.txt"):
     with open(file_path, "r") as inp:
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
+        print("==========Входные данные========== ")
+        print(f"n = {n}; arr = {arr}")
     return n, arr
 
 
@@ -27,6 +29,8 @@ def read_input_for_binary_search(file_path="input.txt"):
         lines = inp.readlines()
         k = int(lines[2].strip())
         arr_b = list(map(int, lines[3].strip().split()))
+        print("==========Входные данные========== ")
+        print(f"n = {n}; arr_a = {arr_a}; arr_b = {arr_b}")
     return n, arr_a, k, arr_b
 
 

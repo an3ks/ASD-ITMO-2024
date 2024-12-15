@@ -7,6 +7,8 @@ def read_input(file_path="input.txt"):
     with open(file_path, "r") as inp:
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
+    print("==========Входные данные========== ")
+    print(f"n = {n}; arr = {arr}")
     return n, arr
 
 
@@ -18,6 +20,8 @@ def read_input_lines(file_path="../txtf/input.txt"):
         for line in inp:
             if line != "":
                 list_of_lines.append(line.split())
+        print("==========Входные данные========== ")
+        print(f"n = {n}; arr = {list_of_lines}")
         return n, list_of_lines
 
 

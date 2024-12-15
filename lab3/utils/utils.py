@@ -8,6 +8,8 @@ def read_input(file_path="input.txt"):
     with open(file_path, "r") as inp:
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
+    print("==========Входные данные========== ")
+    print(f"n = {n}; arr = {arr}")
     return n, arr
 
 
@@ -26,6 +28,8 @@ def read_input_for_lottery(filename):
         s, p = map(int, lines[0].split())
         segments = [tuple(map(int, line.split())) for line in lines[1:s + 1]]
         points = list(map(int, lines[s + 1].split()))
+        print("==========Входные данные========== ")
+        print(f"s = {s}; p = {p}\nsegments {segments}; points {points}")
         return [(s, p)] + segments + [points]
 
 
