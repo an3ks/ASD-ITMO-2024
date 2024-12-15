@@ -73,14 +73,15 @@ task1/
    git clone https://github.com/an3ks/ASD-ITMO-2024
    ```
 2. **Запуск программы:**
-   Перейдите в папку с задачей и выполните:
+   Перейдите в папку лабы и выполните:
    ```bash
-   python src/ex1.py
+   python runAllSrc.py
    ```
 3. **Запуск тестов:**
-   Перейдите в папку lab 3 и выполните:
+   Перейдите в папку лабы и выполните:
    ```bash
-   python run_all.py
+   python runall.py
+   ```
    ```
 
 ## Вывод
