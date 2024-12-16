@@ -52,7 +52,7 @@ def discover_and_run_all_tests(base_dirs):
 
 if __name__ == "__main__":
     # Список директорий лабораторных работ
-    base_dirs = ["lab1", "lab2", "lab3", "lab4"]
+    base_dirs = ["lab1", "lab2", "lab3", "lab4", "lab5"]
 
     # Добавляем текущую директорию в sys.path для корректного импорта
     sys.path.append(os.path.abspath("."))
