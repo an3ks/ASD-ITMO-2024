@@ -61,5 +61,4 @@
 Для запуска тестов выполните:  
 ```bash  
 python -m unittest discover test/  
-```  
-"""
+```

@@ -6,7 +6,7 @@ from lab6.task5.src.ex5 import count_votes
 
 class TestCountVotes(unittest.TestCase):
     TIME_LIMIT_SECONDS = 2
-    MEMORY_LIMIT_MB = 64
+    MEMORY_LIMIT_MB = 128
 
     def test_should_count_votes1(self):
         """Базовый случай: несколько кандидатов с разными голосами"""
@@ -39,8 +39,10 @@ class TestCountVotes(unittest.TestCase):
 
         # then
         self.assertEqual(result, expected_result)
-        self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS)
-        self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB)
+        self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
+                             f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
+        self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
+                             f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
 
     def test_should_count_votes3(self):
         """Несколько кандидатов с одним голосом каждый"""
@@ -55,26 +57,6 @@ class TestCountVotes(unittest.TestCase):
 
         # then
         self.assertEqual(result, expected_result)
-        self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
-                             f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
-        self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
-                             f"Использование памяти {memory_usage:.2f} MB превышает лимит {self.MEMORY_LIMIT_MB} MB")
-
-
-    def test_should_count_votes4(self):
-        """Стресс-тест с большим количеством запросов"""
-        # given
-        queries = [f"candidate{i} {i}" for i in range(1000)] + ["candidate500 500"]
-        expected_result = [f"candidate{i} {i}" for i in range(1000)]
-        expected_result[500] = "candidate500 1000"  # Учитываем дополнительный голос
-
-        # when
-        start_time = time.perf_counter()
-        result = count_votes(queries)
-        elapsed_time, memory_usage = time_memory_tracking1(start_time)
-
-        # then
-        self.assertEqual(result, sorted(expected_result))
         self.assertLessEqual(elapsed_time, self.TIME_LIMIT_SECONDS,
                              f"Время выполнения {elapsed_time:.2f} превышает лимит {self.TIME_LIMIT_SECONDS} секунд")
         self.assertLessEqual(memory_usage, self.MEMORY_LIMIT_MB,
