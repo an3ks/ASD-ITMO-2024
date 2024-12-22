@@ -12,17 +12,13 @@ def read_input(file_path="input.txt"):
     return n, arr
 
 
-def read_input_lines(file_path="../txtf/input.txt"):
-    "Чтение построчно"
+def read_input_lines(file_path="input.txt"):
+    """Чтение данных из файла"""
     with open(file_path, "r") as inp:
-        n = int(inp.readline())
-        list_of_lines = []
-        for line in inp:
-            if line != "":
-                list_of_lines.append(line.split())
-        print("==========Входные данные========== ")
-        print(f"n = {n}; arr = {list_of_lines}")
-        return n, list_of_lines
+        arr = [line.strip() for line in inp.readlines()]  # Считываем строки как команды
+    print("==========Входные данные========== ")
+    print(f"arr = {arr}")
+    return arr
 
 
 def write_output(data, file_path="output.txt", index_log=None):

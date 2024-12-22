@@ -39,7 +39,7 @@ def run_python_file(file_name, script_dir, python_cmd):
 
 if __name__ == "__main__":
     # Список всех директории
-    base_dirs = ["lab1", "lab2", "lab3", "lab4", "lab5"]
+    base_dirs = ["lab1", "lab2", "lab3", "lab4", "lab5", "lab6"]
 
     # Указываем, какой интерпретатор использовать: "python" или "python3"
     run_scripts_in_src(base_dirs, python_cmd="python3")
