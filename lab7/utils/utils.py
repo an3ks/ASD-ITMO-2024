@@ -15,14 +15,26 @@ def read_input(file_path="input.txt"):
     return n, seq1, m, seq2
 
 
+def read_input1(file_path="input.txt"):
+    """Чтение данных из файла"""
+    with open(file_path, "r") as inp:
+        lines = inp.readlines()
+    n = int(lines[0].strip())
+    seq1 = list(map(int, lines[1].strip().split()))
+    print("==========Входные данные========== ")
+    print(f"n = {n} seq = {seq1}")
+    return n, seq1
+
 
 def read_input_lines(file_path="input.txt"):
     """Чтение данных из файла"""
     with open(file_path, "r") as inp:
-        arr = [line.strip() for line in inp.readlines()]  # Считываем строки как команды
-    print("==========Входные данные========== ")
-    print(f"arr = {arr}")
-    return arr
+        lines = inp.readlines()
+    money, num_coins = map(int, lines[0].split())  # Первая строка: сумма и количество монет
+    coins = list(map(int, lines[1].strip().split()))  # Вторая строка: номиналы монет
+    print("==========Входные данные==========")
+    print(f"money = {money}; num_coins = {num_coins}; coins = {coins}")
+    return money, coins
 
 
 def write_output(data, file_path="output.txt", index_log=None):
