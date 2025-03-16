@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 from SecondSemester.lab1.utils.utils import time_memory_tracking, printResult
 
 
-def almost_palindrome(seq):
+def deleting_par(seq):
     pairs = {")":"(", "]":"[", "}":"{"}
     stack = []
     invalid_set = set()
@@ -36,7 +36,7 @@ def read_input(file_path="input.txt"):
 if __name__ == "__main__":
     time_start = time.perf_counter()
     seq = read_input("../txtf/input.txt")
-    result = almost_palindrome(seq)
+    result = deleting_par(seq)
     file_name = os.path.basename(__file__)
     printResult(result, file_name)
     time_memory_tracking(time_start)
