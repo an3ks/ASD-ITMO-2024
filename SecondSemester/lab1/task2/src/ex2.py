@@ -22,6 +22,12 @@ def gas_stations(d, m, n, stops):
     """Задача о заправках"""
     stop_count = 0
     current_fuel = m
+
+    if n == 0 and d > m:
+        return -1
+    elif n == 0 and d <= m:
+        return stop_count
+
     for i in range(n):
         dist = stops[i] - stops[i - 1] if i > 0 else stops[i]  # учитываем расстояния между остановками и
         # едем дальше, пока топлива хватает до следующей остановки, иначе заправляемся и cnt+=1
